@@ -4,7 +4,7 @@ require_once "blocks/header.php"
 
 ?>
 <!--        форма регистрации-->
-        <form action="register.php" method="POST">
+        <form action="registration.php" method="POST">
             <div class="form-group">
                 <label for="username">Имя пользователя</label>
                 <input id="username" class="form-control" type="text" name="username" placeholder="Введите Ваше имя">

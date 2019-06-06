@@ -2,7 +2,7 @@
         $my_blog = "My Blog";   //задал переменную - title
         require_once "blocks/header.php"        //подключил header
 ?>
-<!--            форма авторизаци-->
+<!--            форма авторизации-->
             <form action="login.php" method="POST">
                 <div class="form-group">
                     <label for="username">Имя пользователя</label>
