@@ -1,31 +1,28 @@
 <?php
+require_once "blocks/header.php";
+?>
+<div class="d-flex justify-content-center">
+<form action="authentication.php" method="POST">
+    <div class="form-group">
+        <label for="username">Имя пользователя</label>
+        <input id="username" class="form-control" type="text" name="username" placeholder="Введите Ваше имя" required autocomplete="off" minlength="6"
+               maxlength="25">
+    </div>
 
-//тут будет авторизация
+    <div class="form-group">
+        <label for="password">Пароль</label>
+        <input id="password" class="form-control"  type="password" name="password" placeholder="Пароль" required autocomplete="off">
+    </div>
 
-require_once 'db.php';
+    <button type="submit" class="btn btn-success">Войти</button>
+    <a  class="btn btn-outline-success" id="reg" href="/reg.php">Регистрация</a>
+</form>
+</div>
 
-$username = ($_POST['username']);
-$password = $_POST['password'];
+<?php
+include_once "blocks/footer.php";
+?>
 
-
-$error = '';
-//проверка на длину пароля/имени/и что pass1==pass2
-
-$salt = 'jsdfgvmnsrtioghdfv';
-$password = md5($password . $salt);
-
-$sql = 'SELECT `id` FROM `users` WHERE `username` = :username && `password` = :password';
-$query = $connection->prepare($sql);
-$query->execute(['username'=>$username, 'password' => $password]);
-$user = $query->fetch(PDO::FETCH_OBJ);
-
-if ($user->id == 0) {
-    echo 'Такого пользователя нет';
-}
-    else {
-        setcookie('username' , $username, time()+3600*24*30, "/");
-        echo "Добро пожаловать $username";
-    }
 
 
 

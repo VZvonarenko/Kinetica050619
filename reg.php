@@ -1,30 +1,27 @@
 <?php
-$my_blog = "My Blog";
-require_once "blocks/header.php"
-
+require_once "blocks/header.php";
 ?>
-<!--        форма регистрации-->
-        <form action="registration.php" method="POST">
+    <div class="d-flex justify-content-center">
+        <form action="add_user.php" method="POST">
             <div class="form-group">
                 <label for="username">Имя пользователя</label>
-                <input id="username" class="form-control" type="text" name="username" placeholder="Введите Ваше имя">
+                <input id="username" class="form-control" type="text" name="username" placeholder="Введите Ваше имя" autocomplete="off" minlength="3"
+                       maxlength="25">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" class="form-control" type="email" name="email" placeholder="Введите Ваш email">
+                <input id="email" class="form-control" type="email" name="email" placeholder="Введите Ваш email" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="password">Пароль</label>
-                <input id="password" class="form-control"  type="password" name="password" placeholder="Пароль">
+                <input id="password" class="form-control"  type="password" name="password" placeholder="Пароль" autocomplete="off" minlength="6"
+                       maxlength="25">
             </div>
-            <div class="form-group">
-                <label for="password2">Еще раз пароль</label>
-                <input id="password2" class="form-control"  type="password" name="password2" placeholder="Повторите пароль">
-            </div>
-            <button type="submit" class="btn btn-primary">Регистрация</button>
-            <a href="index.php">На главную</a>
+            <div class="alert alert-danger" id="errorBlock"></div>
+            <button type="submit" id="reg" class="btn btn-success">Регистрация</button>
+            <a class="btn btn-success" href="index.php">На главную</a>
         </form>
-
+    </div>
 
 <?php
 include_once "blocks/footer.php";
