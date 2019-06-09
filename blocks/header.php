@@ -9,8 +9,12 @@
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!--   подключение моих стией -->
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script_add_post.js"></script>
+    <script type="text/javascript" src="js/script_login.js"></script>
+    <script type="text/javascript" src="js/script_reg.js"></script>
+    <script type="text/javascript" src="js/script_comment.js"></script>
 
     <title>My Blog</title>
 </head>

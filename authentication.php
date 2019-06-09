@@ -12,9 +12,10 @@ $query = $connection->prepare($sql);
 $query->execute(['username'=>$username, 'password' => $password]);
 $user = $query->fetch(PDO::FETCH_OBJ);
 if($user->id == 0)
-    echo 'Такого пользователя нет';
+    echo 'Такого пользователя нет или введены неправильные данные';
 else {
     setcookie("username", $username, time() + 3600 * 24, "/");
-    header('Location: /post.php');
-    exit();
+    // header('Location: /post.php');
+    echo 'Готово';
+    // exit();
 }

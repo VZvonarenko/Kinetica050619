@@ -10,9 +10,9 @@ $post = $query->fetch(PDO::FETCH_OBJ);
 ?>
     <div class="container">
         <div class="card">
-               <img class="card-img-top" src="img/DSC03360.jpg" alt="Изображение">
                <h1>Заголовок: <?= $post->title ?></h1>
                <em>"<?= $post->text ?>"</em>
+               <div class="alert alert-info" id="statusinfo"></div>
         </div>
     </div>
 
@@ -22,8 +22,8 @@ $sql = 'SELECT * FROM `comments`  WHERE `post_id` = :id';
 $query = $connection->prepare($sql);
 $query->execute(['id' => $id]);
 $comments = $query->fetchAll(PDO::FETCH_OBJ);
-foreach ($comments as $comment) {
-    ?>
+
+  foreach ($comments as $comment): ?>
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -32,8 +32,9 @@ foreach ($comments as $comment) {
             </div>
         </div>
     </div>
+     <?php endforeach; ?>  
 <?php
-}
+
 if(isset($_COOKIE['username'])) {
     require_once 'blocks/form_comment.php';
 }

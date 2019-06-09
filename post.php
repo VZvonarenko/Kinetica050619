@@ -11,32 +11,31 @@ require_once "blocks/header.php";
         <textarea name="text" id="text" cols="100" rows="3" class="form-control"></textarea>
         </br>
         <button type="submit" class="btn btn-success">Опубликовать</button>
-        <a href="post.php" class="btn btn-success">К постам</a>
     </form>
     </br>
 </div>
 <?php
 require_once 'db.php';
 
-$count = 'SELECT COUNT * FROM table';
-
-//добавить бы пагинацию!!!
-$sql = 'SELECT * FROM `post` ORDER BY `id` DESC';
-$query = $connection->query($sql);
-while ($post = $query->fetch(PDO::FETCH_OBJ)) {
-    ?>
-    <div class="container">
+$sql = 'SELECT * FROM `post` ORDER BY `id` DESC LIMIT 5';
+$query = $connection->prepare($sql);
+$query->execute();
+$posts = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
+    <div class="container ">
         <div class="card">
-            <div class="card-body">
-                <img class="card-img-top" src="img/DSC03360.jpg" alt="Изображение">
-                <h5 class="card-title">Автор: <?=$post->title?></h5>
-                <p class="card-text">Пост: <?=$post->text?></p>
-                <a href=/comment.php?id=<?=$post->id?>>Комментарии</a>
+            <div class="card-body" id="posts">
+                <?php foreach ($posts as $onepost): ?>
+                <h2 class='card-title'><?=$onepost['title']?></h2>
+                <p class='card-text'><?=$onepost['text']?></p>
+                <h6 class='card-subtitle'>Автор поста: <em><?=$onepost['author']?></em></h5>
+                <a class='card-link' href=/comment.php?id=<?=$onepost['id']?>>Читать комментарии</a>
+                <hr align='center' width="90%" size="50" color="#dddddd" />
+                <?php endforeach;?>
             </div>
+           </div>
         </div>
     </div>
-<?php
-}
 
 
 include_once "blocks/footer.php";

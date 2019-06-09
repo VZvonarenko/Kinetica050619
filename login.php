@@ -13,8 +13,8 @@ require_once "blocks/header.php";
         <label for="password">Пароль</label>
         <input id="password" class="form-control"  type="password" name="password" placeholder="Пароль" required autocomplete="off">
     </div>
-
-    <button type="submit" class="btn btn-success">Войти</button>
+    <div class="alert alert-danger" id="statusinfo"></div>
+    <button type="button" id="login" class="btn btn-success">Войти</button>
     <a  class="btn btn-outline-success" id="reg" href="/reg.php">Регистрация</a>
 </form>
 </div>

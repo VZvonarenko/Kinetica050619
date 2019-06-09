@@ -17,8 +17,8 @@ require_once "blocks/header.php";
                 <input id="password" class="form-control"  type="password" name="password" placeholder="Пароль" autocomplete="off" minlength="6"
                        maxlength="25">
             </div>
-            <div class="alert alert-danger" id="errorBlock"></div>
-            <button type="submit" id="reg" class="btn btn-success">Регистрация</button>
+            <div class="alert alert-danger" id="statusinfo"></div>
+            <button type="button" id="reg" class="btn btn-success">Регистрация</button>
             <a class="btn btn-success" href="index.php">На главную</a>
         </form>
     </div>

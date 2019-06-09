@@ -7,8 +7,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $email = trim(filter_var($_POST['email']),FILTER_SANITIZE_EMAIL);
     $password = trim(filter_var($_POST['password']),FILTER_SANITIZE_STRING);
 
-    $error = '';
-    //проверка на длину пароля/имени/и что pass1==pass2
+    /*проверка что пользователя нет в БД*/
+    $sql_check = 'SELECT * FROM `users` WHERE `username` = :username OR `email` = :email';
+    $query_check = $connection->prepare($sql_check);
+    $query_check->bindValue(':username', $username, PDO::PARAM_STR);
+    $query_check->bindValue(':email', $email, PDO::PARAM_STR);
+    $query_check->execute();
+    
+    if ($query_check->fetch(PDO::FETCH_NUM)) 
+        echo 'Такой пользователь зарегистрирован';
+    else {
 
     $salt = 'jsdfgvmnsrtioghdfv';
     $password = md5($password . $salt);
@@ -17,8 +25,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $query = $connection->prepare($sql);
     $query->execute([$username, $email, $password]);
     setcookie("username", $username, time() + 3600, "/");
-    header('Location: /post.php');
-    exit();
-
+    echo "Готово";
+    }
 
 }

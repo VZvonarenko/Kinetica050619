@@ -1,26 +1,27 @@
 <?php
-require_once "blocks/header.php";
-require_once 'db.php';
+include "blocks/header.php";
+include 'db.php';
 
-//добавить пагинацию!!! выводить только по 5-10 постов
-
-$sql = 'SELECT * FROM `post` ORDER BY `id` DESC LIMIT 7';
-$query = $connection->query($sql);
-while ($post = $query->fetch(PDO::FETCH_OBJ)) {?>
-
+$sql = 'SELECT * FROM `post` ORDER BY `id` DESC LIMIT 5';
+$query = $connection->prepare($sql);
+$query->execute();
+$posts = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
     <div class="container ">
         <div class="card">
-            <div class="card-body">
-                <img class="card-img-top" src="img/DSC03360.jpg" alt="Изображение">
-                <h2 class="card-title"><?=$post->title?></h2>
-                <p class="card-text"><?=$post->text?></p>
-                <h6 class="card-subtitle">Автор поста: <?=$post->author?></h6>
-                <a class="card-link" href=/comment.php?id=<?=$post->id?>>Читать комментарии</a>
+            <div class="card-body" id="posts">
+                <?php foreach ($posts as $onepost): ?>
+                <h2 class='card-title'><?=$onepost['title']?></h2>
+                <p class='card-text'><?=$onepost['text']?></p>
+                <h6 class='card-subtitle'>Автор поста: <em><?=$onepost['author']?></em></h5>
+                <a class='card-link' href=/comment.php?id=<?=$onepost['id']?>>Читать комментарии</a>
+                <hr align='center' width="90%" size="50" color="#dddddd" />
+                <?php endforeach;?>
+            
             </div>
+           </div>
         </div>
     </div>
 <?php
-}
-
-include_once "blocks/footer.php";
+include "blocks/footer.php";
 ?>
