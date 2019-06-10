@@ -9,6 +9,7 @@
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<!--    подключение стилей, jquery и скриптов -->
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/script_add_post.js"></script>
@@ -20,6 +21,7 @@
 </head>
 
 <body>
+<!--блок меню bootstrap со стилями -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <a class="navbar-brand" href="index.php">MyBlog</a>
@@ -32,6 +34,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Главная страница<span class="sr-only">(current)</span></a>
             </li>
+<!--            если пользваотель не авторизован, то меняем меню: Вход и Регистрация-->
             <?php
             if ($_COOKIE['username'] == ''):
             ?>
@@ -42,6 +45,7 @@
                     <a class='nav-link' href='reg.php'>Регистрация</a>
                 </li>
 
+<!--            если пользователь авторизован, то меняем меню: Посты и Выход-->
             <?php else: ?>
                 <li class='nav-item'>
                     <a class='nav-link' href='post.php'>Посты</a>
