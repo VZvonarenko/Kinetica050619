@@ -2,13 +2,27 @@
 //подключение файла конфигурации подключения к БД
 require_once 'db.php';
 
+function datachecking($data) {          //функция обработки вводимых данных
+    $data = trim($data);                //обрезаем пробелы
+    $data = stripcslashes($data);       //удаляет экранирование символов
+    $data = htmlspecialchars($data);    //преобразует теги
+    return $data;
+}
+
 //если сущесвуют переменные POST
 if (isset($_POST['username']) && isset($_POST['password'])) {
 
-    //определяем переменные, обрезаем пробелы, фильтруем как строки, почту
-    $username = trim(filter_var($_POST['username']),FILTER_SANITIZE_STRING);
-    $email = trim(filter_var($_POST['email']),FILTER_SANITIZE_EMAIL);
-    $password = trim(filter_var($_POST['password']),FILTER_SANITIZE_STRING);
+    function datachecking($data) {          //функция обработки вводимых данных
+        $data = trim($data);                //обрезаем пробелы
+        $data = stripcslashes($data);       //удаляет экранирование символов
+        $data = htmlspecialchars($data);    //преобразует теги
+        return $data;
+    }
+
+    //задаем и обрабатываем пременные
+    $username = datachecking($_POST['username']);
+    $email = datachecking($_POST['email']);
+    $password = datachecking($_POST['password']);
 
     /*проверка что пользователя нет в БД*/
 

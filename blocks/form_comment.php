@@ -5,8 +5,8 @@ require_once "blocks/header.php";
 <!--создание контейнера bootstrap -->
 <div class="container">
 <!--    форма добавлен я комментариев и обработчки вводимых данных-->
-    <form action="/add_comment.php?id=<?= $_GET['id'] ?>" method="post">
-        <p> </p>
+    <form action="../add_comment.php?id=<?=$_GET['id']?>" method="post">
+        <p></p>
         <!-- метка связи с полем-->
        <label for="mess">Добавить комментарий</label>
 <!--        поле формата textarea-->

@@ -7,10 +7,17 @@ if (!isset($_COOKIE['username']))
 //подключение файла конфигурации подключения к БД
 require_once 'db.php';
 
-//определяем переменные
-$title = trim(filter_var($_POST['title']),FILTER_SANITIZE_STRING);  //обрезаем пробелы, фильтр удаляет теги
-$text = trim(filter_var($_POST['text']),FILTER_SANITIZE_STRING);    //обрезаем пробелы, фильтр удаляет теги
-$author = $_COOKIE['username'];                                             //берем из cookie
+function datachecking($data) {          //функция обработки вводимых данных
+    $data = trim($data);                //обрезаем пробелы
+    $data = stripcslashes($data);       //удаляет экранирование символов
+    $data = htmlspecialchars($data);    //преобразует теги
+    return $data;
+}
+
+//задаем и обрабатываем пременные
+$title = datachecking($_POST['title']);
+$text = datachecking($_POST['text']);
+$author = $_COOKIE['username'];
 
 //запрос sql: вставить в таблицу post в столбцы title, text, author значения переменных
 $sql = 'INSERT INTO post (title, text, author) VALUES (?, ?, ?)';
